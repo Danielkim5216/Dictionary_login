@@ -108,7 +108,7 @@ def root_login():
 def root_home(admin):
     systemfunction.clean_window()
     UserDatabase.User_account_info(admin)
-    print("\n1.home 2.remove account")
+    print("\n1.home 2.remove account 3.save data 4.load data")
     userinput = input('\ninput = ')
     if userinput == '1':
         systemfunction.clean_window()
@@ -116,6 +116,16 @@ def root_home(admin):
     elif userinput == '2':
         remove_userid = input('remove id : ')
         UserDatabase.remove_User_account(remove_userid)
+        systemfunction.loading()
+        systemfunction.clean_window()
+        root_home(admin)
+    elif userinput == '3':
+        UserDatabase.save_data_in_txt()
+        systemfunction.loading()
+        systemfunction.clean_window()
+        root_home(admin)
+    elif userinput == '4':
+        UserDatabase.load_data_in_txt()
         systemfunction.loading()
         systemfunction.clean_window()
         root_home(admin)
