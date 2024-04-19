@@ -95,8 +95,6 @@ def join():
     else:
         Inputerror()
 
-def exit():
-    exit()
 
 def root():
     global login_message,admin
