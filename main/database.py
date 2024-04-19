@@ -1,7 +1,8 @@
 #계정 생성
 account_list = [
-    {'userid':'root','userpw':'root'}
 ]
+
+#{'userid':'root','userpw':'root'}
 
 class UserDatabase:
     def __init__(self,userid,userpw,admin):
@@ -10,7 +11,7 @@ class UserDatabase:
         self.admin = admin
     def __del__(self):
         pass
-    
+
     def User_new_account_request(self):
         #check id 
         checkid = (item for item in account_list if item['userid'] == self.userid == self.userid)
@@ -26,15 +27,15 @@ class UserDatabase:
             print("this id is already join!")
 
     #for admin        
-    def User_account_info(self):
-        if  self.admin == 1:
+    def User_account_info(admin):
+        if  admin == 1:
             print(f"{account_list}\n",end= ' ')
         else:
             print("\nyou are not admin")
 
-    def remove_User_account(userid):
-        for i in range(len(account_list)-1):
-            if account_list[i]['userid'] == userid:
+    def remove_User_account(remove_userid):
+        for i in range(len(account_list)):
+            if account_list[i]['userid'] == remove_userid:
                 del account_list[i] 
-        print(f"{userid} is remove!\n")
+        print(f"{remove_userid} is remove!\n")
         
