@@ -1,6 +1,6 @@
 #계정 생성
 account_list = [
-
+    {'userid':'root','userpw':'root'}
 ]
 
 class UserDatabase:
@@ -21,10 +21,17 @@ class UserDatabase:
             print("Join success!")
         else:
             print("this id is already join!")
+
+    #for admin        
     def User_account_info(self):
         if  self.admin == 1:
             print(f"{account_list}\n",end= ' ')
         else:
             print("\nyou are not admin")
-
- 
+            
+    def remove_User_account(userid):
+        for i in range(len(account_list)-1):
+            if account_list[i]['userid'] == userid:
+                del account_list[i] 
+        print(f"{userid} is remove!\n")
+        
