@@ -8,6 +8,9 @@ class UserDatabase:
         self.userid = userid
         self.userpw = userpw
         self.admin = admin
+    def __del__(self):
+        pass
+    
     def User_new_account_request(self):
         #check id 
         checkid = (item for item in account_list if item['userid'] == self.userid == self.userid)
@@ -28,7 +31,7 @@ class UserDatabase:
             print(f"{account_list}\n",end= ' ')
         else:
             print("\nyou are not admin")
-            
+
     def remove_User_account(userid):
         for i in range(len(account_list)-1):
             if account_list[i]['userid'] == userid:
