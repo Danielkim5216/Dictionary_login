@@ -2,8 +2,9 @@
 account_list = [
 ]
 
-#{'userid':'root','userpw':'root'}
+file_path = "/Users/taekyungkim/Documents/workspace/Dictionary_login/main/savedata.txt"
 
+#{'userid':'root','userpw':'root'}
 class UserDatabase:
     def __init__(self,userid,userpw,admin):
         self.userid = userid
@@ -39,3 +40,19 @@ class UserDatabase:
                 del account_list[i] 
         print(f"{remove_userid} is remove!\n")
         
+    def save_data_in_txt():
+        with open(file_path,"w") as file:
+                '''file.writelines(str(account_list))'''
+                for item in account_list:
+                    file.writelines(str(item) + "\n")
+                print("Save Success! you can shutdown proggram")
+
+    def load_data_in_txt():
+        fiop =  open(file_path,"r")
+        data = fiop.read().splitlines()
+        for userac in data:
+            account_list.append(userac)
+            print("Load Success!")
+            print(f"0: {account_list[0]}")
+
+            
