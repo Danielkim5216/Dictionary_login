@@ -61,14 +61,18 @@ def login():
     systemfunction.clean_window()
     search_account = User(userid,userpw)  
     search_account.account_search()
+
     login_message = 1
     user = 1
+    
     print("\n1.home")
     userinput = input('\ninput = ')
+    del search_account
     if userinput == '1':
         systemfunction.clean_window()
         mainpage(login_message)
     else:
+
         Inputerror()
 
 def join():
@@ -81,6 +85,7 @@ def join():
     database.User_new_account_request()
     print("\n1.home")
     userinput = input('\ninput = ')
+    del database
     if userinput == '1':
         systemfunction.clean_window()
         mainpage(login_message)
