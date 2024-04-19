@@ -4,6 +4,9 @@ class User:
     def __init__(self,userid,userpw):
         self.userid = userid
         self.userpw = userpw
+        
+    def __del__(self):
+        pass
 
     def account_search(self):
         findaccout  = (item for item in account_list if item['userid'] == self.userid and item['userpw'] == self.userpw)
@@ -24,7 +27,8 @@ class User:
             print("root login success!")
         else:
             print("login Fail")
-        
+
+
 
 
         
