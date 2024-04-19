@@ -21,6 +21,10 @@ login_message = 0
 user= 0
 admin = 0
 
+#userid,pw 
+userid = None
+userpw = None
+
 #input error 
 def Inputerror():
     global login_message
@@ -29,6 +33,12 @@ def Inputerror():
     systemfunction.clean_window()
     mainpage(login_message)
 
+#id,pw function 
+def idpw():
+    global userid,userpw
+    userid = input("ID : ")
+    userpw = input("Password : ")
+    
 #main page 
 def mainpage(login_message):
     if login_message == 0:
@@ -40,7 +50,7 @@ def mainpage(login_message):
     else:
         message = 'login_message error'
     print("main page test\n\n1.join 2.login 3.exit")
-    print(admin,user)
+    '''print(admin,user)'''
     print(f"\nyou are {message}")
     userinput = input('\ninput = ')
     if userinput == '1':
@@ -56,8 +66,7 @@ def login():
     global login_message,user
     user = 0
     systemfunction.clean_window()
-    userid = input("ID : ")
-    userpw = input("Password : ")
+    idpw()
     systemfunction.clean_window()
     search_account = User(userid,userpw)  
     search_account.account_search()
@@ -74,8 +83,7 @@ def login():
 def join():
     systemfunction.clean_window()
     print("join\n")
-    userid = input("ID :")
-    userpw = input("Password : ")
+    idpw()
     systemfunction.clean_window()
     database = UserDatabase(userid,userpw,admin)
     database.User_new_account_request()
@@ -95,8 +103,7 @@ def root():
     admin = 0
     systemfunction.clean_window()
     print("admin login\n")
-    userid = input("ID : ")
-    userpw = input("Password : ")
+    idpw()
     rootlogin = User(userid,userpw)
     rootlogin.root_login()
     admin += 1
