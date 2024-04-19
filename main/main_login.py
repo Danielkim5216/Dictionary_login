@@ -1,10 +1,9 @@
 from database import *
 
 class User:
-    def __init__(self,userid,userpw,userinput):
+    def __init__(self,userid,userpw):
         self.userid = userid
         self.userpw = userpw
-        self.userinput = userinput
 
     def account_search(self):
         findaccout  = (item for item in account_list if item['userid'] == self.userid and item['userpw'] == self.userpw)
@@ -14,8 +13,17 @@ class User:
         else:
             print(f'login is success! hello "{self.userid}"')
 
-
-        
+    def root_login(self):
+        '''checkroot = (item for item in account_list if item['userid'] == userid == 'root' and item['userpw'] == userpw == 'root')
+        check = (next(checkroot,False))
+        if check == False:
+            print("error!")
+        else:
+            admin += 1'''
+        if self.userid == "root" and self.userpw == "root":
+            print("root login success!")
+        else:
+            print("login Fail")
         
 
 
