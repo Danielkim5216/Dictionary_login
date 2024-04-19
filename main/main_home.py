@@ -21,10 +21,6 @@ login_message = 0
 user= 0
 admin = 0
 
-#userid,pw 
-userid = None
-userpw = None
-
 #input error 
 def Inputerror():
     global login_message
@@ -32,12 +28,6 @@ def Inputerror():
     systemfunction.loading()
     systemfunction.clean_window()
     mainpage(login_message)
-
-#id,pw function 
-def idpw():
-    global userid,userpw
-    userid = input("ID : ")
-    userpw = input("Password : ")
     
 #main page 
 def mainpage(login_message):
@@ -60,13 +50,14 @@ def mainpage(login_message):
     elif userinput == '3':
         exit()
     elif userinput == 'root':
-        root()
+        root_login()
         
 def login():
     global login_message,user
     user = 0
     systemfunction.clean_window()
-    idpw()
+    userid = input("ID : ")
+    userpw = input("Password : ")
     systemfunction.clean_window()
     search_account = User(userid,userpw)  
     search_account.account_search()
@@ -83,7 +74,8 @@ def login():
 def join():
     systemfunction.clean_window()
     print("join\n")
-    idpw()
+    userid = input("ID : ")
+    userpw = input("Password : ")
     systemfunction.clean_window()
     database = UserDatabase(userid,userpw,admin)
     database.User_new_account_request()
@@ -96,30 +88,32 @@ def join():
         Inputerror()
 
 
-def root():
+def root_login():
     global login_message,admin
     admin = 0
     systemfunction.clean_window()
     print("admin login\n")
-    idpw()
-    rootlogin = User(userid,userpw)
-    rootlogin.root_login()
+    userid = input("ID : ")
+    userpw = input("Password : ")
+    User.root_login(userid,userpw)
     admin += 1
     login_message = 2 
+    root_home(admin)
+
+def root_home(admin):
     systemfunction.clean_window()
-    usinfo = UserDatabase(userid,userpw,admin)
-    usinfo.User_account_info()
+    UserDatabase.User_account_info(admin)
     print("\n1.home 2.remove account")
     userinput = input('\ninput = ')
     if userinput == '1':
         systemfunction.clean_window()
         mainpage(login_message)
     elif userinput == '2':
-        userid = input('remove id : ')
-        UserDatabase.remove_User_account(userid)
+        remove_userid = input('remove id : ')
+        UserDatabase.remove_User_account(remove_userid)
         systemfunction.loading()
         systemfunction.clean_window()
-        mainpage(login_message)
+        root_home(admin)
     else:
         Inputerror()
 
