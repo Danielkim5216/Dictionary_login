@@ -53,6 +53,6 @@ class UserDatabase:
         for userac in data:
             account_list.append(userac)
             print("Load Success!")
-            print(f"0: {account_list[0]}")
+
 
             
