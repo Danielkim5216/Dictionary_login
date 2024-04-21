@@ -21,6 +21,16 @@ login_message = 0
 user= 0
 admin = 0
 
+def UI(userinput):
+    if userinput == '1':
+        print("\n******************JOIN*****************\n")
+    elif userinput == '2':
+        print("\n*****************LOGIN*****************\n")
+    elif userinput == 'root':
+        print("\n******************ROOT******************\n")
+    else:
+        print("\n******************MAIN******************\n\n\t1.join 2.login 3.exit")
+
 #input error 
 def Inputerror():
     global login_message
@@ -31,6 +41,7 @@ def Inputerror():
     
 #main page 
 def mainpage(login_message):
+    userinput = 'home'
     if login_message == 0:
         message = 'not login account'
     elif login_message == 1:
@@ -39,23 +50,24 @@ def mainpage(login_message):
         message = 'admin'
     else:
         message = 'login_message error'
-    print("main page test\n\n1.join 2.login 3.exit")
+    UI(userinput)
     '''print(admin,user)'''
-    print(f"\nyou are {message}")
-    userinput = input('\ninput = ')
+    print(f"\n      you are {message}")
+    userinput = input('\n\tinput = ')
     if userinput == '1':
-        join()
+        join(userinput)
     elif userinput == '2':
-        login()
+        login(userinput)
     elif userinput == '3':
         exit()
     elif userinput == 'root':
-        root_login()
+        root_login(userinput)
         
-def login():
+def login(userinput):
     global login_message,user
     user = 0
     systemfunction.clean_window()
+    UI(userinput)
     userid = input("ID : ")
     userpw = input("Password : ")
     systemfunction.clean_window()
@@ -75,9 +87,9 @@ def login():
 
         Inputerror()
 
-def join():
+def join(userinput):
     systemfunction.clean_window()
-    print("join\n")
+    UI(userinput)
     userid = input("ID : ")
     userpw = input("Password : ")
     systemfunction.clean_window()
@@ -93,11 +105,11 @@ def join():
         Inputerror()
 
 
-def root_login():
+def root_login(userinput):
     global login_message,admin
     admin = 0
     systemfunction.clean_window()
-    print("admin login\n")
+    UI(userinput)
     userid = input("ID : ")
     userpw = input("Password : ")
     User.root_login(userid,userpw)
